@@ -6,8 +6,8 @@ import (
 	"os"
 )
 
-func processCSVFileSequentially() {
-	file, err := os.Open("testdata/data.csv")
+func processCSVFileSequentially(path string) {
+	file, err := os.Open(path)
 	if err != nil {
 		slog.Error("Error opening file", slog.String("err", err.Error()))
 		return

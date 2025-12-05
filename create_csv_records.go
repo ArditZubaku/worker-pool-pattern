@@ -11,21 +11,20 @@ import (
 	"sync"
 )
 
-func createCSVRecords(howMany int, parallel bool) error {
-	const path = "/tmp/testdata"
+func createCSVRecords(path string, howMany int, parallel bool) error {
+	// TODO: FIXME: PICK FOLDER FROM THE PATH
 	if err := os.RemoveAll(path); err != nil {
 		slog.Error("Error removing testdata directory", slog.String("err", err.Error()))
 		return err
 	}
 
-	const filePath = path + "/data.csv"
 	// Create testdata directory if it doesn't exist
 	if err := os.MkdirAll(path, 0755); err != nil {
 		slog.Error("Error creating testdata directory", slog.String("err", err.Error()))
 		return err
 	}
 
-	file, err := os.Create(filePath)
+	file, err := os.Create(path)
 	if err != nil {
 		slog.Error("Error creating file", slog.String("err", err.Error()))
 		return err
